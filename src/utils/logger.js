@@ -1,4 +1,6 @@
+
 import winston from "winston";
+import config from '../config/config.js'
 
 const customLevelsOptions = {
     levels: {
@@ -10,25 +12,32 @@ const customLevelsOptions = {
         debug: 5,
     },
     colors: {
-        fatal: 'red',
-        error: 'orange',
+        fatal: 'underline bold red',
+        error: 'red',
         warning: 'yellow',
         info: 'cyan',
-        http: 'blue',
+        http: 'magenta',
         debug: 'white',
     }
 }
 
-const logger = winston.createLogger({
+const loggerDebug = winston.createLogger({
+    levels: customLevelsOptions.levels,
+    transports:[
+        new winston.transports.Console({level: "debug", format:winston.format.combine(winston.format.colorize({colors:customLevelsOptions.colors}),winston.format.simple())})
+    ]
+})
+const loggerProd = winston.createLogger({
     levels: customLevelsOptions.levels,
     transports:[
         new winston.transports.Console({level: "info", format:winston.format.combine(winston.format.colorize({colors:customLevelsOptions.colors}),winston.format.simple())}),
-        new winston.transports.File({filename: './errors.log', level:'warning', format: winston.format.simple()})
+        new winston.transports.File({filename: './errors.log', level:'error', format: winston.format.simple()})
     ]
 })
-
+const logger = config.isProd ?  loggerProd : loggerDebug;
 export const addLogger = (req, res, next) => {
     req.logger = logger;
-    req.logger.info(`${req.method} in ${req.url} - ${new Date().toLocaleTimeString}`)
+    req.logger.http(`${req.method} in ${req.url} - ${new Date().toLocaleTimeString}`)
     next();
 }
+export {logger};

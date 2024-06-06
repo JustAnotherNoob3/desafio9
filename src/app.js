@@ -4,7 +4,7 @@ import cartRouter from './routes/cartRouter.js';
 import chatRouter from './routes/chatRouter.js';
 import viewsRouter from './routes/viewsRouter.js';
 import sessionsRouter from './routes/sessionsRouter.js';
-import { __dirname } from './utils.js';
+import { __dirname } from './utils/misc_utils.js';
 import handlebars from "express-handlebars";
 import { Server } from 'socket.io';
 import socketServerController from './socketServerController.js';
@@ -15,6 +15,8 @@ import MongoStore from 'connect-mongo';
 import passport from 'passport';
 import initializePassport from './config/passport.config.js';
 import config from './config/config.js';
+import { addLogger } from './utils/logger.js';
+import testingRouter from './routes/testingRouter.js';
 const DB_URL = config.mongoUrl;
 
 //const fileStorage = FileStore(session);
@@ -64,6 +66,7 @@ app.use(session({
 initializePassport();
 app.use(passport.initialize());
 app.use(passport.session()); 
+app.use(addLogger);
 
 //handlebars
 app.set('views', `${__dirname}/views`);
@@ -89,6 +92,8 @@ app.use("/api/carts", cartRouter);
 app.use("/api/chat", chatRouter);
 app.use("/api/sessions", sessionsRouter);
 app.use(viewsRouter);
+app.use(testingRouter)
+
 
 
 

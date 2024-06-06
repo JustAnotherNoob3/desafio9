@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { __dirname } from "../utils.js";
+import { __dirname } from "../utils/misc_utils.js";
 import chatController from "../controllers/chatController.js";
 import { isAdmin, isNotAdmin } from "../auth.js";
 const chatRouter = Router();

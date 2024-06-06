@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { __dirname } from "../utils.js";
+import { __dirname } from "../utils/misc_utils.js";
 import viewController from "../controllers/viewController.js";
 import { authed, notAuthed } from "../auth.js";
 

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { __dirname } from "../utils.js";
+import { __dirname } from "../utils/misc_utils.js";
 import productsController from "../controllers/productsController.js";
 import { isAdmin } from "../auth.js";
 

@@ -10,8 +10,6 @@ export default class DaoMemory {
         return models[this.model].map(x => new DTOs[this.model](x))
     }
     async getById(id) {
-        console.log(id);
-        console.log(models[this.model]);
         if (models[this.model].some(x => x._id == id))
         return new DTOs[this.model](models[this.model].find(x => x._id == id));
         return undefined;

@@ -1,4 +1,4 @@
-import { __dirname } from "../utils.js";
+import { __dirname } from "../utils/misc_utils.js";
 import cartManager from "../Repositories/CartManager.js";
 
 class CartController{
@@ -27,7 +27,6 @@ class CartController{
             let quantity = await cartManager.addProductToCart(cid, pid, qMany);
             res.status(200).send({status: "success", payload: {quantity: quantity}});
         } catch (error) {
-            console.log({status: "error", error: error.toString()});
             res.status(400).send({status: "error", error: error.toString()});
         }
     }

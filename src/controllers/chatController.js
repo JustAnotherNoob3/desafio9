@@ -1,4 +1,4 @@
-import { __dirname } from "../utils.js";
+import { __dirname } from "../utils/misc_utils.js";
 import chatManager from "../Repositories/ChatManager.js";
 
 class ChatController{

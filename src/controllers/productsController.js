@@ -1,4 +1,4 @@
-import { __dirname } from "../utils.js";
+import { __dirname } from "../utils/misc_utils.js";
 import productManager from "../Repositories/ProductManager.js";
 
 class ProductsController{

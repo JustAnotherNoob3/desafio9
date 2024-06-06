@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { __dirname, isValidPassword } from "../utils.js";
+import { __dirname, isValidPassword } from "../utils/misc_utils.js";
 import passport from "passport";
 import UserDTO from "../dto/users.dto.js";
 const sessionsRouter = Router();

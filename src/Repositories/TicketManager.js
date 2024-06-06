@@ -1,5 +1,5 @@
 import { daoTickets } from "./index.js";
-import { __dirname } from '../utils.js';
+import { __dirname } from '../utils/misc_utils.js';
 
 class TicketManager {
     async generateTicket(products, amount, email) {

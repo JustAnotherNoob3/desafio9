@@ -1,9 +1,9 @@
-
+import {logger} from "./utils/logger.js"
 function socketServerController(socketServer){
     socketServer.on('connection',socket => {
-        console.log("Cliente Conectado.");
+        logger.info("Cliente Conectado.");
         socket.on('message',data => {
-            console.log(data);
+            logger.info(data);
         });
     })
     

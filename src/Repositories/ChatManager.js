@@ -1,7 +1,7 @@
 import {msgsModel} from "../dao/mongo/models/messages.js"
 import { daoMsgs } from "./index.js";
 import mongoose from "mongoose";
-import { __dirname } from '../utils.js';
+import { __dirname } from '../utils/misc_utils.js';
 
 class ChatManager {
     async addMessage(message) {

@@ -1,7 +1,7 @@
 import passport from "passport";
 import local from 'passport-local';
 import GitHubStrategy from 'passport-github2';
-import { createHash, isValidPassword } from "../utils.js";
+import { createHash, isValidPassword } from "../utils/misc_utils.js";
 import mongoose from "mongoose";
 import cartManager from '../Repositories/CartManager.js';
 import { daoUsers } from "../Repositories/index.js";
@@ -14,7 +14,6 @@ const  initializePassport = () => {
             try {
                 let user = await daoUsers.getOneByOther({email:username});
                 if(user){
-                    console.log("User already exist");
                     return done(null, false);
                 }
                 const newUser = {
@@ -49,11 +48,9 @@ const  initializePassport = () => {
             }
             let user = await daoUsers.getOneByOther({email:username});
             if(!user){
-                console.log("User doesn't exist");
                 return done(null, false);
             }
             if(!isValidPassword(user, password)) return done(null, false);
-            console.log(user)
             return done(null,user);
         } catch (error){
             return done(error)
@@ -69,7 +66,6 @@ const  initializePassport = () => {
           },
           async (accessToken, refreshToken, profile, done) => {
             try {
-              console.log(profile); 
               const user = await daoUsers.getOneByOther({
                 email: profile._json.email,
               });

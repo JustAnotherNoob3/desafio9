@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import mongoose from "mongoose";
 import { daoCarts } from './index.js';
-import { __dirname } from '../utils.js';
+import { __dirname } from '../utils/misc_utils.js';
 import productManager from './ProductManager.js';
 import { ticketsModel } from '../dao/mongo/models/tickets.js';
 import ticketManager from './TicketManager.js';

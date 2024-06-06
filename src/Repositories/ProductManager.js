@@ -2,14 +2,10 @@ import fs from 'node:fs';
 import { daoProducts } from './index.js';
 import mongoose from "mongoose";
 import mongoosePaginate from 'mongoose-paginate-v2';
-import { __dirname } from '../utils.js';
+import { __dirname } from '../utils/misc_utils.js';
 import { fakerES_MX } from '@faker-js/faker';
 let faker = fakerES_MX;
 class ProductManager {
-    #path;
-    constructor() {
-        console.log("new instance created");
-    }
     async addProduct(product) {
         if (product.thumbnails === undefined) product.thumbnails = [];
 
